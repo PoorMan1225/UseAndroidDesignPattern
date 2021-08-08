@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">PatternEnable</string>
+    <string name="checkout_dialog_message">Eat now or continue building your sandwich?</string>
+    <string name="checkout_dialog_title">CheckOut</string>
+    <string name="action_ok_text">CONTINUE</string>
+    <string name="action_cancel_text">EATNOW</string>
+</resources>
