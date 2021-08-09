@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">ProtoTypePattern</string>
+    <string name="prime_text">"The 10000th prime number is : "</string>
+    <string name="fib_text">"The 100th member of Fibonacci sequence is : "</string>
+</resources>
