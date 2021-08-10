@@ -6,6 +6,7 @@ import android.view.View
 import android.widget.Toast
 import com.rjhwork.mycompany.simplesandwich.databinding.ActivityMainBinding
 import com.rjhwork.mycompany.simplesandwich.decorator.Toasted
+import com.rjhwork.mycompany.simplesandwich.facade.Facade
 import com.rjhwork.mycompany.simplesandwich.ingredient.Salt
 import com.rjhwork.mycompany.simplesandwich.ingredient.bread.Bagel
 import com.rjhwork.mycompany.simplesandwich.ingredient.bread.Bread
@@ -18,7 +19,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var builder: SandwichBuilder
     private lateinit var sandwich: Sandwich
-    private lateinit var toasted: Toasted
     private lateinit var bread: Bread
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,28 +30,14 @@ class MainActivity : AppCompatActivity() {
     fun onActionOnClicked(view: View) {
         builder = SandwichBuilder()
         sandwich = Sandwich()
-        var toast: String = ""
+        val toast: String
         var extraKcal = 0
 
-        if (binding.radioBagel.isChecked) {
-            bread = Bagel()
-            sandwich = builder.build(sandwich, bread)
-        } else {
-            bread = Bun()
-            builder.build(sandwich, bread)
-        }
-
-        if (binding.checkEgg.isChecked) {
-            sandwich = builder.build(sandwich, Egg())
-        }
-
-        if (binding.checkCress.isChecked) {
-            sandwich = builder.build(sandwich, Cress())
-        }
-
-        if (binding.swichSalt.isChecked) {
-            sandwich = builder.build(sandwich, Salt())
-        }
+        val facade = Facade()
+        sandwich = facade.radioGroupControl.output(binding, builder, sandwich)
+        sandwich = facade.checkEggControl.output(binding, builder, sandwich)
+        sandwich = facade.checkCressControl.output(binding, builder, sandwich)
+        sandwich = facade.toggleSaltControl.output(binding, builder, sandwich)
 
         if (binding.swichToasted.isChecked) {
             val t = Toasted(bread)
