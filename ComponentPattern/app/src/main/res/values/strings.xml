@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">ComponentPattern</string>
+    <string name="head_line">SANDWICH NEWS</string>
+</resources>
